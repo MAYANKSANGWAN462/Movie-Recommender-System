@@ -150,5 +150,3 @@ Then run: `pip install -r requirements.txt`
 **Developer:** Mayank Sangwan & Sameer Verma
 **Email:** sangwanmayank462@gmail.com
 
-```
-```
