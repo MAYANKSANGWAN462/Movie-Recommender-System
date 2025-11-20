@@ -208,7 +208,6 @@ Later, you can deploy this app online using:
 
 ## 👨‍💻 Author
 
-**Developer:** Your Name  
-**Email:** your.email@example.com  
+**Developer:** Mayank Sangwan 
+**Email:** sangwanmayank462@gmail.com
 
-**Description:** Flask-based Movie Recommendation System using TMDB API.
