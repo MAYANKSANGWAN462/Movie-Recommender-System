@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 CineMatch | Movie Recommender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Galaxy Background -->
+    <div class="galaxy-bg">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header-container">
+            <div class="header-content">
+                <h1 class="header">
+                    <!-- <span class="logo-icon">🎬</span> -->
+                    <span class="logo-text">CineMatch</span>
+                </h1>
+                <p class="tagline">Discover your next favorite movie</p>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <form action="/recommend" method="POST" class="search-form">
+                    <div class="form-group">
+                        <label for="movie" class="form-label">Select a Movie</label>
+                        <div class="input-wrapper">
+                            <input list="movies" name="movie_name" class="search-input" placeholder="Type to search..." required autocomplete="off">
+                            <div class="input-icon">🎬</div>
+                        </div>
+                        <!-- Dropdown Container -->
+                        <div class="dropdown-container">
+                            <datalist id="movies">
+                                {% for movie in movie_list %}
+                                    <option value="{{ movie }}">
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Get Recommendations</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </form>
+
+                <!-- Error Message Display -->
+                {% if error %}
+                    <div class="error-message">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-text">{{ error }}</span>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        {% if recommendations %}
+            <section class="recommendations-section">
+                <div class="section-header">
+                    <h2 class="recommendations-title">Recommended for:</h2>
+                    <p class="movie-name">{{ movie_name }}</p>
+                </div>
+                
+                <div class="movies-row">
+                    {% for movie in recommendations %}
+                    <div class="movie-card">
+                        <div class="poster-container">
+                            <img src="{{ movie.poster }}" alt="{{ movie.title }}" class="movie-poster">
+                            <div class="poster-overlay">
+                                <div class="movie-info">
+                                    <h3 class="movie-title">{{ movie.title }}</h3>
+                                    <p class="movie-id">TMDB ID: {{ movie.id }}</p>
+                                </div>
+                                <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank" class="details-link">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by TMDB</p>
+        </footer>
+    </div>
+</body>
+</html>
