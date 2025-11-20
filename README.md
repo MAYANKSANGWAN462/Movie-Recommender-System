@@ -1,4 +1,4 @@
-````markdown
+
 # 🎬 Hybrid Movie Recommender System
 
 A robust Movie Recommendation Engine utilizing a **Hybrid Approach** (Content-Based Filtering + BERT Embeddings). It combines **TF-IDF** for keyword matching and **Sentence-Transformers** for semantic understanding to suggest movies based on metadata and plot summaries.
